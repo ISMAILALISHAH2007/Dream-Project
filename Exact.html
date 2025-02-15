@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYED's Website</title>
+    <!-- Add Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://www.w3schools.com/favicon.ico">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            transition: background 0.3s ease, color 0.3s ease;
+            cursor: auto; /* Removed custom cursor */
+        }
+
+        body.dark-mode {
+            background: #121212;
+            color: #fff;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f4f4f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #6a11cb;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2575fc;
+        }
+
+        body.dark-mode ::-webkit-scrollbar-track {
+            background: #333;
+        }
+
+        body.dark-mode ::-webkit-scrollbar-thumb {
+            background: #2575fc;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        header .cta-button {
+            background: #fff;
+            color: #6a11cb;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        header .cta-button:hover {
+            background: #6a11cb;
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: #2575fc;
+        }
+
+        /* Back-to-Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
+            transition: background 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background: #2575fc;
+        }
+
+        /* About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem;
+            background: #f4f4f9;
+            position: relative;
+        }
+
+        body.dark-mode .about {
+            background: #1e1e1e;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/always-grey.png');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .about img {
+            width: 200px;
+            border-radius: 50%;
+            margin-right: 2rem;
+            animation: float 3s ease-in-out infinite;
+            border: 5px solid #6a11cb;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .about h2 {
+            color: #2575fc;
+        }
+
+        .about p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        body.dark-mode .about p {
+            color: #ccc;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        body.dark-mode .services {
+            background: #1e1e1e;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .services h2 {
+            color: #2575fc;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #f4f4f9;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        body.dark-mode .service-card {
+            background: #333;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-image: linear-gradient(135deg, #6a11cb, #2575fc) 1;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .service-card h3 {
+            color: #2575fc;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        body.dark-mode .service-card p {
+            color: #ccc;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 2rem;
+            background: #f4f4f9;
+            text-align: center;
+        }
+
+        body.dark-mode .portfolio {
+            background: #1e1e1e;
+        }
+
+        .portfolio h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .portfolio h2 {
+            color: #2575fc;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(106, 17, 203, 0.8);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item .overlay h3 {
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        body.dark-mode .testimonials {
+            background: #1e1e1e;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .testimonials h2 {
+            color: #2575fc;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            flex: 0 0 300px;
+            background: #f4f4f9;
+            padding: 2rem;
+            border-radius: 10px;
+            scroll-snap-align: start;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .testimonial-card {
+            background: #333;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-mode .testimonial-card p {
+            color: #ccc;
+        }
+
+        .testimonial-card h3 {
+            font-size: 1.2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .testimonial-card h3 {
+            color: #2575fc;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: #f4f4f9;
+            text-align: center;
+        }
+
+        body.dark-mode .contact {
+            background: #1e1e1e;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .contact h2 {
+            color: #2575fc;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .contact-form input,
+        body.dark-mode .contact-form textarea {
+            background: #333;
+            color: #fff;
+            border-color: #555;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        .contact-form button {
+            background: #6a11cb;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #2575fc;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        body.dark-mode footer {
+            background: #1e1e1e;
+        }
+
+        footer .social-links {
+            margin-bottom: 1rem;
+        }
+
+        footer .social-links a {
+            margin: 0 0.5rem;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #6a11cb;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about img {
+                margin: 0 0 1rem 0;
+            }
+        }
+
+        /* New Features */
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        body.dark-mode .loader {
+            background: #121212;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #6a11cb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(18, 18, 18, 0.9);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background: #6a11cb;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        body.dark-mode .hamburger .bar {
+            background: #2575fc;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #fff;
+        }
+
+        .nav-links a:hover {
+            color: #6a11cb;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(255, 255, 255, 0.9);
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            body.dark-mode .nav-links {
+                background: rgba(18, 18, 18, 0.9);
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+        }
+
+        /* Newsletter Styles */
+        .newsletter {
+            padding: 4rem 2rem;
+            background: #6a11cb;
+            color: #fff;
+            text-align: center;
+        }
+
+        body.dark-mode .newsletter {
+            background: #2575fc;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: #fff;
+            color: #6a11cb;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #2575fc;
+            color: #fff;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #6a11cb;
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Live Chat Widget */
+        .live-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .chat-button:hover {
+            background: #2575fc;
+        }
+
+        .chat-window {
+            display: none;
+            width: 300px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        body.dark-mode .chat-window {
+            background: #1e1e1e;
+            color: #fff;
+        }
+
+        .chat-header {
+            background: #6a11cb;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            padding: 1rem;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .chat-body p {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+
+        .chat-body .bot-message {
+            background: #f4f4f9;
+            color: #333;
+            align-self: flex-start;
+        }
+
+        body.dark-mode .chat-body .bot-message {
+            background: #333;
+            color: #fff;
+        }
+
+        .chat-body .user-message {
+            background: #6a11cb;
+            color: #fff;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        body.dark-mode .chat-body .user-message {
+            background: #2575fc;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: #2575fc;
+        }
+
+        /* Map Section */
+        .map {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: #f4f4f9;
+        }
+
+        body.dark-mode .map {
+            background: #1e1e1e;
+        }
+
+        .map h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .map h2 {
+            color: #2575fc;
+        }
+
+        /* Countdown Timer */
+        .countdown-timer {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        body.dark-mode .countdown-timer {
+            background: #1e1e1e;
+        }
+
+        .countdown-timer h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+
+        body.dark-mode .countdown-timer h2 {
+            color: #2575fc;
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .timer span {
+            padding: 0.5rem;
+            background: #6a11cb;
+            color: #fff;
+            border-radius: 5px;
+            margin: 0 0.5rem;
+        }
+
+        body.dark-mode .timer span {
+            background: #2575fc;
+        }
+    </style>
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+  
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back-to-Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- Header -->
+    <header>
+        <h1>Welcome to My SYED's Website</h1>
+        <p>Your one-stop solution for modern web design and development.</p>
+        <a href="#contact" class="cta-button">Get Started</a>
+    </header>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <img src="ABOUT US.png" alt="About Us">
+        <div>
+            <h2>About Us</h2>
+            <p>We are a team of passionate designers and developers dedicated to creating stunning websites that drive results.</p>
+            <p class="more-text" style="display: none;">Additional information about your team and mission.</p>
+            <button class="read-more" onclick="toggleReadMore()">Read More</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Web Design</h3>
+                <p>We create beautiful and user-friendly designs tailored to your brand.</p>
+            </div>
+            <div class="service-card">
+                <h3>Web Development</h3>
+                <p>We build fast, responsive, and scalable websites using the latest technologies.</p>
+            </div>
+            <div class="service-card">
+                <h3>SEO Optimization</h3>
+                <p>We optimize your website to rank higher on search engines and attract more traffic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="WEB.jpg" height="300px" loading="lazy" alt="Project 1 - Web Design">
+                <div class="overlay">
+                    <h3>Project 1</h3>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="SEO.jpg" height="300px"  loading="lazy" alt="Project 2 - E-commerce Development">
+                <div class="overlay">
+                    <h3>Project 2</h3>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="SOE.jpg" height="300px"  loading="lazy" alt="Project 3 - SEO Optimization">
+                <div class="overlay">
+                    <h3>Project 3</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-card">
+                <p>"Amazing work! The team delivered beyond our expectations."</p>
+                <h3>- HASSAN</h3>
+            </div>
+            <div class="testimonial-card">
+                <p>"Highly professional and creative. Highly recommended!"</p>
+                <h3>- JAMAL</h3>
+            </div>
+            <div class="testimonial-card">
+                <p>"The best web design agency we've worked with."</p>
+                <h3>- AWAIS</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>Subscribe to Our WEBSITE</h2>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map">
+        <h2>Our Location</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2e7d30c0b8a!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1622549402996!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+   
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/" class="tooltip" data-tooltip="Facebook">Facebook</a>
+            <a href="https://www.twitter.com/" class="tooltip" data-tooltip="Twitter">Twitter</a>
+            <a href="https://www.instagram.com/" class="tooltip" data-tooltip="Instagram">Instagram</a>
+        </div>
+        <p>&copy; 2025 SYED's Website. All rights reserved.</p>
+        <p> For more details : ismailalishah2007@gmail.com</p>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat">
+        <button class="chat-button" onclick="toggleChat()">💬 Chat with Us</button>
+        <div class="chat-window">
+            <div class="chat-header">
+                <h3>Live Chat</h3>
+                <button class="close-chat" onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <p class="bot-message">Hi there!Welcome to SYED's Website.How can I help you today?</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatInput(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     
+
+       
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle Read More Text
+        function toggleReadMore() {
+            const moreText = document.querySelector('.more-text');
+            const button = document.querySelector('.read-more');
+            if (moreText.style.display === 'none') {
+                moreText.style.display = 'block';
+                button.textContent = 'Read Less';
+            } else {
+                moreText.style.display = 'none';
+                button.textContent = 'Read More';
+            }
+        }
+
+        // Progress Bar Script
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.querySelector('.progress-bar').style.width = scrollPercentage + '%';
+        });
+
+      
+
+        const interval = setInterval(countdown, 1000);
+
+        // Chat Widget Functionality
+        function toggleChat() {
+            const chatWindow = document.querySelector('.chat-window');
+            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const chatBody = document.getElementById('chat-body');
+            const userMessage = chatInput.value.trim();
+
+            if (userMessage === '') {
+                alert('Please type a message.');
+                return;
+            }
+
+            // Add user message to chat
+            const userMessageElement = document.createElement('p');
+            userMessageElement.classList.add('user-message');
+            userMessageElement.textContent = userMessage;
+            chatBody.appendChild(userMessageElement);
+
+            // Clear input
+            chatInput.value = '';
+
+            // Scroll to bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(userMessage);
+                const botMessageElement = document.createElement('p');
+                botMessageElement.classList.add('bot-message');
+                botMessageElement.textContent = botResponse;
+                chatBody.appendChild(botMessageElement);
+
+                // Scroll to bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 500);
+        }
+
+        function getBotResponse(userMessage) {
+            const lowerCaseMessage = userMessage.toLowerCase();
+
+            if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+                return 'Hello! How can I assist you today?';
+            } else if (lowerCaseMessage.includes('price') || lowerCaseMessage.includes('cost')) {
+                return 'Our pricing starts at $49/month. Would you like to know more?';
+            } else if (lowerCaseMessage.includes('contact')) {
+                return 'You can reach us at support@example.com or call us at +1 234 567 890.';
+            } else if (lowerCaseMessage.includes('service')) {
+                return 'We offer web design, development, and SEO services. Which one are you interested in?';
+            } else {
+                return 'I’m sorry, I didn’t understand that. Can you please rephrase?';
+            }
+        }
+
+        // Prevent form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message!');
+        });
+
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing!');
+        });
+    </script>
+</body>
+</html>
